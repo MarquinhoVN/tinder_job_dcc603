@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Dev Login{% endblock %}
+
+{% block content %}
+<div id='containerHome' class="container">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+          <img src="/static/images/tinder-icon.png" alt='Logo projeto' width="100px"/>
+          <h2>Dev Login</h2>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control") }}
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control") }}
+                </div>
+
+                <!-- Submit button -->
+                <div class="form-outline mb-4">
+                    {{ form.submit(class="btn btn-primary btn-block") }}
+                </div>
+
+                <!-- Register link -->
+                <div class="text-center">
+                    <p>Não é membro? <a href="{{ url_for('dev_register') }}">Registre-se</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
