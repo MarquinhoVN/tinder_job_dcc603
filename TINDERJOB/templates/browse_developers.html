@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Tinder Jobs{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <a href="{{ url_for('emp_home') }}" class="btn btn-info mb-4">Voltar para Home</a> 
+
+    {% for developer in developers %}
+    <div class="card mb-4 developer-card shadow-lg rounded" id="developer-{{ loop.index }}" style="display: none;">
+        <div class="card-header bg-success text-white">
+            <h5 class="card-title mb-0">{{ developer.name }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{ url_for('static', filename='images/dev.png') }}" alt="Foto do Desenvolvedor" class="img-fluid rounded-circle" style="width: 250px; height: 150px;">
+                </div>
+                <div class="col-md-9">
+                    <p class="card-text"><strong>Habilidades:</strong> {{ developer.habilidades }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <a href="{{ url_for('emp_match_developer', developer_id=developer.id) }}" class="btn btn-primary">Dar Match</a>
+            <a href="#" class="btn btn-secondary" onclick="passDeveloper(); return false;">Passar</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    let currentDeveloperIndex = 1;
+    const totalDevelopers = {{ developers|length }};
+
+    document.getElementById('developer-' + currentDeveloperIndex).style.display = 'block';
+
+    function passDeveloper() {
+        document.getElementById('developer-' + currentDeveloperIndex).style.display = 'none';
+        
+        currentDeveloperIndex++;
+        if (currentDeveloperIndex <= totalDevelopers) {
+            document.getElementById('developer-' + currentDeveloperIndex).style.display = 'block';
+        }
+    }
+</script>
+{% endblock %}

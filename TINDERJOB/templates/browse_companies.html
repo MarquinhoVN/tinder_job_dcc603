@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Tinder Jobs{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <a href="{{ url_for('dev_home') }}" class="btn btn-info mb-4">Voltar para Home</a>
+
+    {% for company in companies %}
+    <div class="card mb-4 company-card shadow-lg rounded" id="company-{{ loop.index }}" style="display: none;">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">{{ company.company_name }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{ url_for('static', filename='images/emp.png') }}" alt="Logo da Empresa" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+                </div>
+                <div class="col-md-9">
+                    <p class="card-text"><strong>Descrição:</strong> {{ company.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <a href="{{ url_for('dev_match_company', company_id=company.id) }}" class="btn btn-success">Dar Match</a>
+            <a href="#" class="btn btn-secondary" onclick="passCompany(); return false;">Passar</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    let currentCompanyIndex = 1;
+    const totalCompanies = {{ companies|length }};
+
+    document.getElementById('company-' + currentCompanyIndex).style.display = 'block';
+
+    function passCompany() {
+        document.getElementById('company-' + currentCompanyIndex).style.display = 'none';
+
+        currentCompanyIndex++;
+        if (currentCompanyIndex <= totalCompanies) {
+            document.getElementById('company-' + currentCompanyIndex).style.display = 'block';
+        }
+    }
+</script>
+{% endblock %}
