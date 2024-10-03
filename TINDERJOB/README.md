@@ -14,7 +14,7 @@ O objetivo deste sistema é permitir que **desenvolvedores** e **empresas** se c
 6. **Autenticação segura** para garantir a integridade e a privacidade dos usuários.
    
 ## Como Rodar
-1. git clone https://github.com/seu-usuario/tinder_job_dcc603.git
+1. git clone https://github.com/MarquinhoVN/tinder_job_dcc603.git
 2. cd tinder_job_dcc603/TINDERJOB
 3. Utilizar python 3.12.
 4. No Linux utilize source .venv/bin/activate
